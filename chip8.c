@@ -229,13 +229,22 @@ void emulate_cycle(Chip8 *chip8) {
                     chip8->V[X] = chip8->delay_timer;
                     break;
                 case 0x000A:
-                    for (int i = 0; i < 16; i++) {
-                        if (chip8->keypad[i]) {
-                            chip8->V[X] = i;
-                            return;
+                    if (chip8->wait_key == false) {
+                        for (int i = 0; i < 16; i++) {
+                            if (chip8->keypad[i]) {
+                                chip8->wait_key = i;
+                                break;
+                            }
                         }
-                    }
-                    chip8->pc -= 2;
+                        chip8->pc -= 2;
+                        } else {
+                        if (!chip8->keypad[chip8->wait_key]) { 
+                            chip8->V[X] = chip8->wait_key; 
+                            chip8->wait_key = false; 
+                        } else {
+                            chip8->pc -= 2; 
+                            }
+                        }
                     break;
                 case 0x0015:
                     chip8->delay_timer = chip8->V[X];

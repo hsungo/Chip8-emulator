@@ -48,6 +48,7 @@ int main(int argc, char* argv[]) {
 
     Chip8 chip8;
     init_chip8(&chip8);
+    chip8.wait_key = false;
     bool is_running = true;
     if (!load_rom(&chip8, argv[1])) {
         return -1;

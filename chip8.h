@@ -19,6 +19,7 @@ typedef struct {
     uint8_t keypad[16];         // 16 bottons status
     uint32_t display[64 * 32];  // 64x32 pixels display
 
+    bool wait_key;              // whether key pressed
     bool draw_flag;             // whether renew display
 } Chip8;
 
