@@ -111,5 +111,5 @@ make tetris  # play tetris game
 make space   # play space invaders game
 # Shoot with W, move with Q and E. Press W to begin a game.
 
-make <game_name> # play the game put in ROM
+make <game_name> # play the game put in ROM/
 ```
